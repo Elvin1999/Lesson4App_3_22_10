@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -31,10 +32,13 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapRazorPages();
+
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=home}/{action=index}/{id?}"
     );
+
 
 app.MapControllerRoute(
     name: "default",
